@@ -15,11 +15,10 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// must build from the client directory and set the this ENV variable
-// or the site will produce errors as it only returns the routes it knows or index.html
-// the client/public directory is not the same structure as the build directory
-// this causes calls for manifest.json and javascripts/css etc to all return index.html
-process.env.NODE_ENV = 'production';
+// lol silly me i forgot to run the react 'server' with `npm start` from the ./client
+// directory.  I must be new to this or something.  
+// gotta say great problem solving by just building the project and switching environmetns
+// what a can do attitude .... fake it till you make it!
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
