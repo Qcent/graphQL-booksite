@@ -3,7 +3,9 @@ const express = require('express');
 // import ApolloServer
 const { ApolloServer } = require('apollo-server-express');
 // import our typeDefs and resolvers
-//const { typeDefs, resolvers } = require('./schemas');
+const { typeDefs, resolvers } = require('./schemas');
+// import utility middleware
+const { authMiddleware } = require('./utils/auth');
 
 const path = require('path');
 const db = require('./config/connection');
@@ -15,10 +17,26 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// lol silly me i forgot to run the react 'server' with `npm start` from the ./client
-// directory.  I must be new to this or something.  
-// gotta say great problem solving by just building the project and switching environmetns
-// what a can do attitude .... fake it till you make it!
+const startServer = async() => {
+    // create a new Apollo server and pass in our schema data
+    const server = new ApolloServer({
+        typeDefs,
+        resolvers,
+        context: authMiddleware
+    });
+
+    // Start the Apollo server
+    await server.start();
+
+    // integrate our Apollo server with the Express application as middleware
+    server.applyMiddleware({ app });
+
+    // log where we can go to test our GQL API
+    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+};
+
+// Initialize the Apollo server
+startServer();
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
