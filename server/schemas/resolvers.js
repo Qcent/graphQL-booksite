@@ -1,17 +1,15 @@
 const { AuthenticationError } = require('apollo-server-express');
 
 const { signToken } = require('../utils/auth');
-const { User, Books } = require('../models');
+const { User } = require('../models');
 
 const resolvers = {
     Query: {
         // get the information of the logged in user by JWT
         me: async(parent, args, context) => {
-            console.log(context);
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
-                    .select('-__v -password')
-                    .populate('savedBooks');
+                    .select('-__v -password');
 
                 return userData;
             }
@@ -55,10 +53,18 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        saveBook: async(parent, { bookId }, context) => {
-            if (context.user) {
-                const updatedUser = await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { savedBooks: bookId } }, { new: true }).populate('savedBooks');
+        saveBook: async(parent, { input }, context) => {
+            console.log("saving book: " + input.title);
+            //console.dir(input);
 
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(context.user._id, { $addToSet: { "savedBooks": input } }, { new: true })
+                    .select('-__v -password');
+
+                // lets calc our own bookCount, `cus who knows how to get this one liner of a virtual to fire on this?  
+                updatedUser['bookCount'] = updatedUser.savedBooks.length;
+
+                console.log(updatedUser);
                 return updatedUser;
             }
             throw new AuthenticationError('You need to be logged in!');
