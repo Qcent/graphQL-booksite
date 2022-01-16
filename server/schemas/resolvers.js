@@ -53,7 +53,6 @@ const resolvers = {
         },
         saveBook: async(parent, { input }, context) => {
             console.log("saving book: " + input.title);
-            //console.dir(input);
 
             if (context.user) {
                 const updatedUser = await User.findByIdAndUpdate(context.user._id, { $addToSet: { "savedBooks": input } }, { new: true })
@@ -62,7 +61,6 @@ const resolvers = {
                 // lets calc our own bookCount, `cus who knows how to get this one liner of a virtual to fire on this?  
                 updatedUser['bookCount'] = updatedUser.savedBooks.length;
 
-                console.log(updatedUser);
                 return updatedUser;
             }
             throw new AuthenticationError('You need to be logged in!');
