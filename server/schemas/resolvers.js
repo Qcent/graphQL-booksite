@@ -19,14 +19,12 @@ const resolvers = {
         // get all users
         users: async() => {
             return User.find()
-                .select('-__v -password')
-                .populate('savedBooks');
+                .select('-__v -password');
         },
         // get a user by username
         user: async(parent, { username }) => {
             return User.findOne({ username })
-                .select('-__v -password')
-                .populate('savedBooks');
+                .select('-__v -password');
         },
         */
     },
@@ -71,7 +69,7 @@ const resolvers = {
         },
         removeBook: async(parent, { bookId }, context) => {
             if (context.user) {
-                const updatedUser = await User.findOneAndUpdate({ _id: context.user._id }, { $pull: { savedBooks: bookId } }, { new: true }).populate('savedBooks');
+                const updatedUser = await User.findOneAndUpdate({ _id: context.user._id }, { $pull: { savedBooks: bookId } }, { new: true }).select('-__v -password');;
 
                 return updatedUser;
             }
