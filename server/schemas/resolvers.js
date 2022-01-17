@@ -52,8 +52,7 @@ const resolvers = {
             return { token, user };
         },
         saveBook: async(parent, { input }, context) => {
-            console.log("saving book: " + input.title);
-
+            //console.log("saving book: " + input.title);
             if (context.user) {
                 const updatedUser = await User.findByIdAndUpdate(context.user._id, { $addToSet: { "savedBooks": input } }, { new: true })
                     .select('-__v -password');
@@ -66,7 +65,7 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
         removeBook: async(parent, { bookId }, context) => {
-            console.log("removing book: " + bookId);
+            //console.log("removing book: " + bookId);
             if (context.user) {
                 const updatedUser = await User.findByIdAndUpdate(context.user._id, { $pull: { 'savedBooks': { 'bookId': bookId } } }, { new: true }).select('-__v -password');;
 

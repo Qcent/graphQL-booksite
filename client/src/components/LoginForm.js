@@ -14,8 +14,8 @@ const LoginForm = () => {
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-    // destructure the loginUser function from the LOGIN_USER mutation
- const [loginUser] = useMutation(LOGIN_USER); 
+  // destructure the loginUser function from the LOGIN_USER mutation
+  const [loginUser] = useMutation(LOGIN_USER); 
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
