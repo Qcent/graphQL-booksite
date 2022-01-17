@@ -5,7 +5,8 @@
 
 ## Description
 
-Take a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server. The app was built using the MERN stack, with a React front end, MongoDB database, and Node.js/Express.js server and API. It allows users to SignUp or Login and save book searches to a database.  
+Take a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server. The app was built using the MERN stack, with a React front end, MongoDB database, and Node.js/Express.js server and API. It allows users to SignUp or Login and save book searches to a database.  \
+ 
 Deployment: http://qcent-booksite.herokuapp.com/ \
 Screenshot: \
 ![App Screenshot](./app-screenshot.png)
