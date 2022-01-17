@@ -13,7 +13,7 @@ import { REMOVE_BOOK } from '../utils/mutations';
 const SavedBooks = () => {
   // use QUERY_ME to set userData
  const { loading, data } = useQuery(QUERY_ME, {});
- //****let userData = data?.me || {savedBooks: []};
+
   // destructure the removeBook function from the REMOVE_BOOK mutation
  const [removeBook] = useMutation(REMOVE_BOOK); 
 
@@ -26,27 +26,18 @@ const SavedBooks = () => {
     }
 
     try {
-      await removeBook( {
-        variables:
-            {
-              'bookId': bookId
-            },
-        onError:(err)=>{
-                //console.log(err);
-                throw new Error('something went wrong! '+ err);
-            }
+      await removeBook({
+          variables: { 'bookId': bookId },
+          onError: (err) => {
+              throw new Error('something went wrong! ' + err);
+          }
       });
+      // merge function in Apollo InMemoryCache will auto update the cahe when this mutation is complete and redraw saved books
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
-      //****remove from userData.savedBooks causeing a redraw of the page
-      //****let newSavedBooks = userData.savedBooks.filter( book => book.bookId !== bookId);
-      //******console.log(newSavedBooks);
-      //*****data.me['savedBooks'] = newSavedBooks;
-      //*****userData = {}
-      //*****this.setState({});
 
     } catch (err) {
-      console.error(err);
+        console.error(err);
     }
   };
 
