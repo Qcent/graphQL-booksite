@@ -43,6 +43,10 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
+app.get("*", function(req, res) {
+    res.render("Error_page");
+});
+
 //app.use(routes);
 
 db.once('open', () => {
