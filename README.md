@@ -1,30 +1,24 @@
 
 # Book Search GraphQL Refactor
  
- ![MIT](https://img.shields.io/badge/License-MIT-orange)  ![JavaScript](https://img.shields.io/badge/Tech-JavaScript-lightblue)  ![Node.js](https://img.shields.io/badge/Tech-Node.js-lightblue)  ![Express.js](https://img.shields.io/badge/Tech-Express.js-lightblue)  ![React.js](https://img.shields.io/badge/Tech-React.js-lightblue)  ![MongoDB](https://img.shields.io/badge/Tech-MongoDB-lightblue)  ![Apollo](https://img.shields.io/badge/Tech-Apollo-lightblue)  ![GraphQL](https://img.shields.io/badge/Tech-GraphQL-lightblue)  ![bcrpyt](https://img.shields.io/badge/Tech-bcrpyt-lightblue)  ![jsonwebtoken](https://img.shields.io/badge/Tech-jsonwebtoken-lightblue) 
+ ![MIT](https://img.shields.io/badge/License-MIT-orange)  ![JavaScript](https://img.shields.io/badge/Tech-JavaScript-lightblue)  ![Node.js](https://img.shields.io/badge/Tech-Node.js-lightblue)  ![Express.js](https://img.shields.io/badge/Tech-Express.js-lightblue)  ![React.js](https://img.shields.io/badge/Tech-React.js-lightblue)  ![MongoDB](https://img.shields.io/badge/Tech-MongoDB-lightblue)  ![Apollo](https://img.shields.io/badge/Tech-Apollo-lightblue)  ![GraphQL](https://img.shields.io/badge/Tech-GraphQL-lightblue)  ![bcrpyt](https://img.shields.io/badge/Tech-bcrpyt-lightblue)  ![jsonwebtoken](https://img.shields.io/badge/Tech-jsonwebtoken-lightblue)  ![Heroku](https://img.shields.io/badge/Tech-Heroku-lightblue)  
 
 ## Description
+
 Take a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server. The app was built using the MERN stack, with a React front end, MongoDB database, and Node.js/Express.js server and API. It allows users to SignUp or Login and save book searches to a database.  
+
+Screenshot: \
+![App Screenshot](./app-screenshot.png)
 
 ## Table of Contents
 
 * [Description](#description)
-* [Table of Contents](#table-of-contents)
-* [Installation](#installation)
-* [Usage](#usage)
 * [Credits](#credits)
 * [License](#license)
 
-## Installation
-
-To Make any modifications to the code you will need to download the project repository and install it on your machine. 
-
-## Usage
-
-Make your changes and upload to Heroku 
-
 ## Credits
-Frontend and initial code written by Xandromus 
+
+Frontend and initial code written by [Xandromus](https://github.com/Xandromus)
 
 ## License
 
